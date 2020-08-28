@@ -4,6 +4,8 @@
 
 > cliente é a pessoa que será cadastrara no sistema pelo usuário (atendente).
 
+### SCGC é um sistema bem simples, criado para facilitar o acesso aos endereços dos clientes da empresa A Soparia.
+
 - img
     - logo.png
 - js
