@@ -4,6 +4,8 @@
 
 #### SCGC é um sistema bem simples, criado para facilitar o acesso aos endereços dos clientes da empresa A Soparia.
 
+```
+
 - ../
     
     - img
@@ -20,4 +22,6 @@
     
     - index.php *Pagina principal*
 
-> cliente refere-se à pessoa que será cadastrara no sistema pelo usuário (atendente).
+```
+
+    - > cliente refere-se à pessoa que será cadastrara no sistema pelo usuário (atendente).
