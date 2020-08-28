@@ -624,22 +624,26 @@ include "./php/CallBackClientData.php";
 											endif;
 
 										else:
+													
+											$DadosDoCliente = getClientData($_POST['editar']);
+										
+											if($DadosDoCliente[0] == 000):
 
-											$dadosClientEdit = getClientData($_POST['editar']);																						
-
-											while($row = $dadosClientEdit->fetch_assoc())
-											{	
-												$IDBack				= $row['ID'];
-												$NomeBack 			= $row['Nome'];
-												$TelefoneBack 		= $row['Telefone'];
-												$CEPBack 			= $row['CEP'];
-												$RuaBack 			= $row['Rua'];
-												$NumeroBack 		= $row['Numero'];
-												$BairroBack 		= $row['Bairro'];
-												$CidadeBack 		= $row['Cidade'];
-												$ComplementoBack	= empty($row['Complemento']) ? "Sem Complemento" : $row['Complemento'];
-												$ReferenciaBack 	= $row['PontoReferencia'];
-											}
+												while($row = $DadosDoCliente[1]->fetch_assoc())
+												{	
+													$IDBack				= $row['ID'];
+													$NomeBack 			= $row['Nome'];
+													$TelefoneBack 		= $row['Telefone'];
+													$CEPBack 			= $row['CEP'];
+													$RuaBack 			= $row['Rua'];
+													$NumeroBack 		= $row['Numero'];
+													$BairroBack 		= $row['Bairro'];
+													$CidadeBack 		= $row['Cidade'];
+													$ComplementoBack	= empty($row['Complemento']) ? "Sem Complemento" : $row['Complemento'];
+													$ReferenciaBack 	= $row['PontoReferencia'];
+												}
+											
+											endif;
 									?>
 									
 										<div class="row">
@@ -750,12 +754,14 @@ include "./php/CallBackClientData.php";
 														<p>Esta ação fará com que todos os dados deste cliente sejam excluidos, deseja continuar?</p>
 													</div>
 													<div class="modal-footer">
-														<a href="" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+														
 														<form action="./" method="POST">
 															<input type="hidden" name="editar" />
 															<input type="hidden" name="delete" value="<?php echo $IDBack?>" />
-															<button type="submit" class="modal-close waves-effect waves-green btn-flat">Excluir</button>
+															<button type="submit" class=" waves-effect waves-green btn-flat">Excluir</button>
+															<a class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
 														</form>
+														
 													</div>
 												</div>
 
