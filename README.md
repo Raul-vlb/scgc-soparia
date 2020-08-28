@@ -22,3 +22,5 @@
 
 
 > cliente refere-se à pessoa que será cadastrara no sistema pelo usuário (atendente).
+
+Utilização atravéz do [XAMPP Server](https://www.apachefriends.org/pt_br/index.html) *(Estrutura do banco de dados encontra-se em ./php/asopariabd.sql)*
