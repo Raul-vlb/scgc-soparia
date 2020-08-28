@@ -40,29 +40,22 @@ function pesquisacep(valor) {
 	var cep = valor.replace(/\D/g, '');
 	
 	if (cep != "") {
-		
 		//	Expressão regular para validar o CEP.
 		var validacep = /^[0-9]{8}$/;
 		
 		if(validacep.test(cep)) {
-
 			document.getElementById('EnderecoCliente').value="...";
 			document.getElementById('BairroEnderecoCliente').value="...";
 			document.getElementById('CidadeEnderecoCliente').value="...";
 			
 			var script = document.createElement('script');
-
 			script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=callback';
 			document.body.appendChild(script);
-
 		}else {
-			
 			Clean_Form();
-				alert("Formato do CEP é inválido.");
+			alert("Formato do CEP é inválido.");
         }
-		
 	} else {
-		
 		Clean_Form();
     }
 };
