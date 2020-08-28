@@ -10,7 +10,7 @@
         - logo.png
     
     - js
-        - mask.js *mascara telefone e captura de endereço através do CEP*
+        - mask.js                   *(mascara telefone e captura de endereço através do CEP)*
     
     - php
         - CallBackClientData.php    *(recupera os dados digitados pelo usuário em caso de falha durante o cadastro)*
