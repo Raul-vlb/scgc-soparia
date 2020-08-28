@@ -21,4 +21,4 @@
     - index.php *Pagina principal*
 
 
-    - > cliente refere-se à pessoa que será cadastrara no sistema pelo usuário (atendente).
+> cliente refere-se à pessoa que será cadastrara no sistema pelo usuário (atendente).
