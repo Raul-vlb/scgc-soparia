@@ -22,34 +22,36 @@ function getClientData($clientName){
 		
 		mysqli_close($ConnectDB); 	//	fecha conexão
 	
-	//	retorna os dados capturados
-		return $clientData;	
-	
+	// Define o status de acordo com o resultado da execução do SQL
+		$Status = (mysqli_num_rows($clientData) > 0) ? 000 : 001;
+	//	Retorna o Status 
+		$DataBack = ($Status == 000) ? array($Status, $clientData) : array($Status);
+		return $DataBack;	
 }
 
 
 function sendClientData($nome, $telefone, $cep, $rua, $numero, $bairro, $cidade, $complemento, $referencia){
 	
 	include 'Conn.php';
-
-	//	Descrição dos status:
-	//		# 100 > Tudo ocorreu conforme o esperado
-	//		# 101 > Usuário já cadastrado no sistema
-	//		# 102 > Campo "telefone" incompleto
-	//		# 103 > Erro ao executar o SQL de inserção
 	
 	//	verifica se o cliente já está cadastrado no sistema	
 	$sqlCheckDouble = "SELECT * FROM clientes WHERE Nome = '$nome'";
 	$checkDouble = mysqli_query($ConnectDB, $sqlCheckDouble);	
 	
+	//	Status de erro caso o usuário já esteja cadastrado
 	if(mysqli_num_rows($checkDouble) > 0):
 		$Status = 101;
+
+		//	Retorna o Status junto com os dados em caso de erro
 		$DataBack = array( $Status, $nome, $telefone, $cep, $rua , $numero, $bairro, $cidade, $complemento, $referencia );
 		return $DataBack;
 	endif;
 	
+	//	Status de erro caso telefone esteja incompleto
 	if(strlen($telefone) < 14):
 		$Status = 102;	
+		
+		//	Retorna o Status junto com os dados em caso de erro
 		$DataBack = array( $Status, $nome, $telefone, $cep, $rua , $numero, $bairro, $cidade, $complemento, $referencia );
 		return $DataBack;
 	endif;
@@ -63,26 +65,23 @@ function sendClientData($nome, $telefone, $cep, $rua, $numero, $bairro, $cidade,
 	mysqli_close($ConnectDB);
 
 	// Define o status de acordo com o resultado da execução do SQL
-	if($dataSent):	//	True
-		$Status = 100;
-		$DataBack = array($Status);
-		return $DataBack;
-	else:			//	False
-		$Status = 103;
-		$DataBack = array($Status);
-		return $DataBack;
-	endif;
+	$Status = ($dataSent) ? 100 : 103;
 
-	//	return ($dataSent) ? "<i class='material-icons medium'> check_circle </i> <br> Cliente cadastrado com sucesso!" : "<i class='material-icons medium'> error </i> <br> Cliente não foi cadastrado devido à um erro.";
+	//	Retorna o Status 
+	$DataBack = array($Status);
+	return $DataBack;
 	
 }
+
 
 function updateClientData($ID, $nome, $telefone, $cep, $rua, $numero, $bairro, $cidade, $complemento, $referencia){
 	
 	include 'Conn.php';
 
+	//	Status de erro caso telefone esteja incompleto
 	if(strlen($telefone) < 14):
 		$Status = 201;	
+		//	Retorna o Status junto com o campo Nome em caso de erro
 		$DataBack = array( $Status, $nome );
 		return $DataBack;
 	endif;
@@ -92,20 +91,17 @@ function updateClientData($ID, $nome, $telefone, $cep, $rua, $numero, $bairro, $
 								SET Nome = '$nome', Telefone = '$telefone', CEP = '$cep', Rua = '$rua', Numero = '$numero', Bairro = '$bairro', Cidade = '$cidade', Complemento = '$complemento', PontoReferencia = '$referencia'
 								WHERE ID = $ID";
 	//	Executa o SQL, salvando o resultado (true ou false) na variavel
-	$dataSent = mysqli_query($ConnectDB, $sqlUpdateClientData);
+	$dataUpdate = mysqli_query($ConnectDB, $sqlUpdateClientData);
 	//	fecha conexão
 	mysqli_close($ConnectDB);
 
+
 	// Define o status de acordo com o resultado da execução do SQL
-	if($dataSent):	//	True
-		$Status = 200;
-		$DataBack = array($Status, $nome);
-		return $DataBack;
-	else:			//	False
-		$Status = 202;
-		$DataBack = array( $Status, $nome );
-		return $DataBack;
-	endif;
+	$Status = ($dataUpdate) ? 200 : 202;
+
+	//	Retorna o Status 
+	$DataBack = array($Status, $nome);
+	return $DataBack;
 
 }
 
@@ -120,17 +116,18 @@ function deleteClientData($ID){
 	mysqli_close($ConnectDB);
 
 	// Define o status de acordo com o resultado da execução do SQL
-	if($dataDelete):	//	True
-		$Status = 300;
-		$DataBack = array($Status);
-		return $DataBack;
-	else:			//	False
-		$Status = 301;
-		$DataBack = array( $Status);
-		return $DataBack;
-	endif;
+	$Status = ($dataDelete) ? 300 : 301;
+
+	//	Retorna o Status 
+	$DataBack = array($Status);
+	return $DataBack;
 
 }
 
+	//	Descrição dos status:
+	//		# 100 > Tudo ocorreu conforme o esperado
+	//		# 101 > Usuário já cadastrado no sistema
+	//		# 102 > Campo "telefone" incompleto
+	//		# 103 > Erro ao executar o SQL de inserção
 	
 ?>

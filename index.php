@@ -79,6 +79,7 @@ include "./php/CallBackClientData.php";
 			}
 			
 			.nav{position: fixed; width: 60px; height: 100vh; margin: 0;}
+			.nav-iten{ margin: 15px 0; }
 			
 		</style>
 		
@@ -96,25 +97,25 @@ include "./php/CallBackClientData.php";
 			<div class="row center">
 				<form action="./" method="POST">
 					
-					<div class="row">
+					<div class="row nav-iten">
 						<button type="submit" name="buscar" class="btn-floating grey darken-2 waves-effect waves-dark tooltipped" data-position="right" data-tooltip="Buscar Cliente"> 
 	    					<i class="material-icons right">search</i>
 		 				</button>
 					</div>
 					
-					<div class="row">
+					<div class="row nav-iten">
 						<button type="submit" name="cadastrar" class="btn-floating grey darken-2 waves-effect waves-dark tooltipped" data-position="right" data-tooltip="Cadastrar Novo Cliente"> 
 							<i class="material-icons"> person_add </i> 
 						</button>
 					</div>
 					
-					<div class="row">
+					<div class="row nav-iten">
 						<button type="submit" name="lista" class="btn-floating grey darken-2 waves-effect waves-dark tooltipped" data-position="right" data-tooltip="Lista De Clientes Cadastrados"> 
 							<i class="material-icons"> format_list_numbered </i> 
 						</button>
 					</div>
 					
-					<div class="row">
+					<div class="row nav-iten">
 						<button type="submit" name="config" class="btn-floating grey darken-2 waves-effect waves-dark tooltipped" data-position="right" data-tooltip="Configurações"> 
 							<i class="material-icons"> settings </i> 
 						</button>
@@ -189,6 +190,7 @@ include "./php/CallBackClientData.php";
     							</div>
 							</div>
 						</div>
+
 					<?php
 						break;
 						
@@ -202,28 +204,28 @@ include "./php/CallBackClientData.php";
 									<div class="card-panel white center">
 										
 										<?php
+
+										$nameSearch = ($_POST['SearchClient']) ? $_POST['SearchClient'] : "";		
+										$DadosDoCliente = getClientData($nameSearch);
+										
+										if($DadosDoCliente[0] == 000):
 											
-											if(isset($_POST['SearchClient'])):
-												
-												$DadosDoCliente = getClientData($_POST['SearchClient']);																						
-													
-												while($row = $DadosDoCliente->fetch_assoc())
-												{	
-													$ID				= $row['ID'];
-													$Nome 			= $row['Nome'];
-													$Telefone 		= $row['Telefone'];
-													$CEP 			= $row['CEP'];
-													$Rua 			= $row['Rua'];
-													$Numero 		= $row['Numero'];
-													$Bairro 		= $row['Bairro'];
-													$Cidade 		= $row['Cidade'];
-													$Complemento	= empty($row['Complemento']) ? "Sem Complemento" : $row['Complemento'];
-													$Referencia 	= $row['PontoReferencia'];
-												}
-												
-												$EnderecoCompleto = $Rua.", ".$Numero." - ".$Bairro;
-												
-											?>
+											while($row = $DadosDoCliente[1]->fetch_assoc())
+											{	
+												$ID				= $row['ID'];
+												$Nome 			= $row['Nome'];
+												$Telefone 		= $row['Telefone'];
+												$CEP 			= $row['CEP'];
+												$Rua 			= $row['Rua'];
+												$Numero 		= $row['Numero'];
+												$Bairro 		= $row['Bairro'];
+												$Cidade 		= $row['Cidade'];
+												$Complemento	= empty($row['Complemento']) ? "Sem Complemento" : $row['Complemento'];
+												$Referencia 	= $row['PontoReferencia'];
+											}
+											
+											$EnderecoCompleto = $Rua.", ".$Numero." - ".$Bairro;
+										?>
 											
 										<div class="row" style="margin: 0;">
 							
@@ -308,8 +310,18 @@ include "./php/CallBackClientData.php";
 										</div>
 										
 										<?php
-										else:
-											echo "<i class='material-icons medium'> check_circle </i> <br> Entre com um nome válido!";
+										elseif($DadosDoCliente[0] == 001):
+											
+											echo "<i class='material-icons medium'> warning </i> <br> Cliente não cadastrado.";
+
+											echo "
+												<script>
+													setTimeout(function(){
+														window.location.href = './';
+													}, 2000);
+												</script>
+											";
+
 										endif;
 										?>
 										
