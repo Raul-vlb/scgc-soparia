@@ -1,9 +1,9 @@
 <?php
 
 #---------------------------------x---------------------------------#
-#                          catchClient.php                          #
-#                      Buscar dados do cliente                      #
-#          -=[Cadastro e Gerenciamento de clientes v1.0]=-          #
+#                           functions.php                           #
+#       cadastrar-solicitar-alterar-deletar dados do cliente        #
+#    -=[Sistema de Cadastro e Gerenciamento de clientes v1.0]=-     #
 #---------------------------------x---------------------------------#
 #  Copyright 2020 - Raul Vitor Lucena Brito <raulvitorcc@gmail.com> #
 #---------------------------------x---------------------------------#

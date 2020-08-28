@@ -2,7 +2,7 @@
 #-------------------------------------------x-------------------------------------------#
 #                                       index.php                                       #
 #                                       Home Page                                       #
-#                    -=[Cadastro e Gerenciamento de clientes v1.0]=-                    #
+#              -=[Sistema de Cadastro e Gerenciamento de clientes v1.0]=-               #
 #-------------------------------------------x-------------------------------------------#
 #            Copyright 2020 - Raul Vitor Lucena Brito <raulvitorcc@gmail.com>           #
 #-------------------------------------------x-------------------------------------------#
