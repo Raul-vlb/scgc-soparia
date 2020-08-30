@@ -736,7 +736,7 @@ include "./php/CallBackClientData.php";
 																<input type="hidden" name="SearchClient" value="<?php echo $NomeBack; ?>">
 																<button type="submit" name="cliente" style="width: 100%;" class="btn btn-large waves-effect dark-waves grey darken-3">
 																	Voltar
-																	<i type="button"  class="material-icons left">keyboard_return</i>
+																	<i class="material-icons left">keyboard_return</i>
 																</button>
 															</form>
 														</div>
