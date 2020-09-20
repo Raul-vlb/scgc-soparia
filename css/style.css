@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.card-panel {
+    animation: fadein 0.5s;
+    -webkit-animation: fadein 0.5s;
+    -moz-animation: fadein 0.5s;
+    -ms-animation: fadein 0.5s;
+}
+
+#CardPrint { display: none; width: 320px; border: none; margin: 0 auto; padding: 15px; background: white; }
+#CardPrint .title { margin: 10px 0 5px 0; border-bottom: 1px solid #333; }
+#CardPrint .content { margin: 0 10px; }
+#CardPrint .complemento { margin: 0 15px; padding: 0; text-align: justify; }
+#CardPrint .print { display: none; }
+
+.nav { position: fixed; width: 60px; height: 100vh; margin: 0; }
+.nav-iten { margin: 15px 0; }
+
+.map { height: 400px; width: 100%; }
+
+
+/* Keyframes */
+@keyframes fadein {
+    from { opacity: 0.5; }
+    to   { opacity: 1;   }
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0.5; }
+    to   { opacity: 1;   }
+}
+
+@-moz-keyframes fadein {
+    from { opacity: 0.5; }
+    to   { opacity: 1;   }
+}
+
+@-o-keyframes fadein {
+    from { opacity: 0.5; }
+    to   { opacity: 1;   }
+}
+
+
+/* Impressão */
+@media print {
+    .DoNotPrint { display: none; }
+    #CardPrint { display: block; }
+    body { background: #fff; }
+}
